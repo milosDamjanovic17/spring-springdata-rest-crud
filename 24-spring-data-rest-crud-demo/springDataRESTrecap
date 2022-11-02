@@ -1,0 +1,58 @@
+
+
+
+#
+# Spring Data REST recap
+#
+
+We need to insert: spring-boot-starter-data-rest dependency to our pom.xml
+
+
+By default, Spring Data REST will create endpoints based on Entity type
+
+U nasem slucaju Entity je Employee, obradice endpoint tako da prvi karakter bude lowercase i dodace "s" na kraju Entity imena, primer:
+
+	public interface IEmployeeRepository extends JpaRepository<Employee, Integer> => localhost:8080/magic-api/employees{}
+	
+									***magic-api je custom root path ime koje smo napisali u application.properties
+									***spring.data.rest.base-path=/magic-api
+
+
+ukoliko zelimo custom endpoint/path: npr da bude localhost:8080/magic-api/members
+	
+	@RepositoryRestResource(path = "members")
+	public interface IEmployeeRepository extends JpaRepository<Employee, Integer>{}
+
+
+
+***Most common Spring Data REST Configuration properties
+
+spring.data.rest.base-path => base path used to expose repository resourses // linija 18
+spring.data.rest.default-page-size => default velicina strana
+spring.data.rest.max-page-size => maximum velicina strana
+
+luv2code.com/spring-boot-pages za vise config propertija
+
+
+
+Sorting property names:
+
+localhost:8080/magic-api/employees?sort=lastName
+localhost:8080/magic-api/employees?sort=firstName,desc
+localhost:8080/magic-api/employees?sort=lastName,firstName (ASC is default)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
